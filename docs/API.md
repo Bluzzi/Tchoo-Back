@@ -6,8 +6,8 @@ All of the ``POST`` data is passed through the body as JSON.
 
 ## Routes
 - ``/api/account/``
-    - [LOGIN](./routes/LOGIN.md)
-    - [LOGOUT](./routes/LOGOUT.md)
-    - [CREATE](./routes/REGISTER.md)
-    - [LINK_WALLET](./routes/LINK_WALLET.md)
+    - [LOGIN](./routes/account/LOGIN.md)
+    - [LOGOUT](./routes/account/LOGOUT.md)
+    - [CREATE](./routes/account/REGISTER.md)
+    - [LINK_WALLET](./routes/account/LINK_WALLET.md)
 - ``...``
