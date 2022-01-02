@@ -1,2 +1,4 @@
-# Tchoo-Back
-The back-end (task and API) of all Tchoo apps.
+# The Tchoos 
+
+## API
+**[Accès à la documentation de l'API](./docs/API.md)**
