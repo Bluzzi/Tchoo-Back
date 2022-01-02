@@ -1,4 +1,4 @@
-### [BACK TO API](../API.md)
+### [BACK TO API](../../API.md)
 
 **``POST`` /api/account/logout**  
 The entry-point to retrieve a login token which can expire and can be used to interact with the rest of the API.

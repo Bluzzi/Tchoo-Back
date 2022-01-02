@@ -1,4 +1,4 @@
-### [BACK TO API](../API.md)
+### [BACK TO API](../../API.md)
 
 **``POST`` /api/account/link_wallet**  
 The entry-point to link an elrond wallet with an account.

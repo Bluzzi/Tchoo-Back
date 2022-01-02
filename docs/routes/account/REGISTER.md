@@ -1,4 +1,4 @@
-### [BACK TO API](../API.md)
+### [BACK TO API](../../API.md)
 
 **``POST`` /api/account/create**  
 The entry-point to create an account.
