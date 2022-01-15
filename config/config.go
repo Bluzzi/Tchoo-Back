@@ -10,8 +10,9 @@ import (
 type TConfig struct {
 	Password string `json:"password"`
 	SecretJson string `json:"secret-json"`
+	PointsForATicket float64 `json:"points-for-a-ticket"`
 	CollectionToken string `json:"collection-token-identifier"`
-	SenderAddress string `json:"sender-address"`
+	ContractAddress string `json:"contract-address"`
 	PrivateKey []byte
 }
 

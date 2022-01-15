@@ -2,6 +2,9 @@ package authentication
 
 import (
 	"MetaFriend/database"
+	"crypto/sha1"
+	"encoding/base64"
+	"fmt"
 	"github.com/google/uuid"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -30,10 +33,14 @@ func Exists(field string, value string) (bool, DatabaseEntry) {
 func Create(username string, password string) string {
 	_, err := database.AuthenticationCollection.InsertOne(database.Context, DatabaseEntry{
 		Username: username,
+		UniqueUsername: strings.ToLower(username),
 		Password: password,
 		Wallet:   "",
 		Token:    []string{},
 	})
+
+	fmt.Println("[REGISTER] Registered using " + username + " and hashed password " + password)
+
 
 	if err != nil {
 		log.Fatal(err)
@@ -43,12 +50,16 @@ func Create(username string, password string) string {
 }
 
 func VerifyLogin(username string, password string) bool {
+	hasher := sha1.New()
+	hasher.Write([]byte(password))
+
+	fmt.Println("[LOGIN] Tried log-in using " + username + " and hashed password " + base64.URLEncoding.EncodeToString(hasher.Sum(nil)))
 	var result DatabaseEntry
 	err := database.AuthenticationCollection.FindOne(
 		database.Context,
 		bson.M{
 			FieldUsername: username,
-			FieldPassword: password,
+			FieldPassword: base64.URLEncoding.EncodeToString(hasher.Sum(nil)),
 		},
 	).Decode(&result)
 
@@ -56,6 +67,7 @@ func VerifyLogin(username string, password string) bool {
 		return err != mongo.ErrNoDocuments
 	}
 
+	fmt.Println("[LOGIN] Log-in using " + username + " and hashed password " + base64.URLEncoding.EncodeToString(hasher.Sum(nil)) + " successful.")
 	return true
 }
 
@@ -105,6 +117,24 @@ func InvalidateLoginToken(token string) {
 		bson.M{
 			"$pull": bson.M{
 				FieldTokens: token,
+			},
+		},
+	)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+func UpdateField(operator string, field string, value interface{}, token string) {
+	_, err := database.AuthenticationCollection.UpdateOne(
+		database.Context,
+		bson.M{
+			FieldTokens: token,
+		},
+		bson.M{
+			operator: bson.M{
+				field: value,
 			},
 		},
 	)

@@ -4,10 +4,8 @@ import (
 	"MetaFriend/database/authentication"
 	"MetaFriend/routes/errors"
 	"MetaFriend/routes/responses"
-	"crypto/sha256"
 	"encoding/json"
 	"net/http"
-	"strings"
 )
 
 type LoginRequest struct {
@@ -19,11 +17,11 @@ func (lR LoginRequest) Verify() (bool, string) {
 	if len(lR.Username) == 0 || len(lR.Password) == 0 {
 		return false, errors.ErrorEmptyField
 	}
-	if exists, _ := authentication.Exists(authentication.FieldUsername, strings.ToLower(lR.Username)); !exists {
+	if exists, _ := authentication.Exists(authentication.FieldUsername, lR.Username); !exists {
 		return false, errors.ErrorInvalidLogin
 	}
 
-	if verifiedLogin := authentication.VerifyLogin(lR.Username, string(sha256.New().Sum([]byte(lR.Password)))); !verifiedLogin {
+	if verifiedLogin := authentication.VerifyLogin(lR.Username, lR.Password); !verifiedLogin {
 		return false, errors.ErrorInvalidLogin
 	}
 	return true, ""

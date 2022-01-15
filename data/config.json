@@ -1,6 +1,7 @@
 {
   "password": "Elrondtest1$",
   "secret-json": "login.json",
-  "collection-token-identifier": "4d46542d613366343535",
-  "sender-address": "erd1kjt03cx0vp9rz0yh6z7ns8lv2af3c2zwhje89rxh5946p9h2w8ls58ymam"
+  "collection-token-identifier": "MFT-a3f455",
+  "points-for-a-ticket": 20,
+  "contract-address": "erd1qqqqqqqqqqqqqpgqy4wpkwce9h8ruelc2kr6rwfjxfv37q5dw8ls82pgxj"
 }

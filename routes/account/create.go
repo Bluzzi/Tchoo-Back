@@ -4,7 +4,8 @@ import (
 	"MetaFriend/database/authentication"
 	"MetaFriend/routes/errors"
 	"MetaFriend/routes/responses"
-	"crypto/sha256"
+	"crypto/sha1"
+	"encoding/base64"
 	"encoding/json"
 	"net/http"
 	"strings"
@@ -20,7 +21,7 @@ func (cR CreateRequest) Verify() (bool, string) {
 		return false, errors.ErrorEmptyField
 	}
 
-	if exists, _ := authentication.Exists(authentication.FieldUsername, strings.ToLower(cR.Username)); exists {
+	if exists, _ := authentication.Exists(authentication.FieldUniqueUsername, strings.ToLower(cR.Username)); exists {
 		return false, errors.ErrorAccountAlreadyExists
 	}
 
@@ -39,7 +40,9 @@ func HandleCreateAccount(w http.ResponseWriter, r *http.Request)  {
 		return
 	}
 
-	token := authentication.Create(createAccountRequest.Username, string(sha256.New().Sum([]byte(createAccountRequest.Password))))
+	hasher := sha1.New()
+	hasher.Write([]byte(createAccountRequest.Password))
+	token := authentication.Create(createAccountRequest.Username, base64.URLEncoding.EncodeToString(hasher.Sum(nil)))
 	_ = json.NewEncoder(w).Encode(responses.AccountCreateResponse{
 		Success: true,
 		Token:   token,

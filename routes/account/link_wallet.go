@@ -9,7 +9,6 @@ import (
 	"github.com/ElrondNetwork/elrond-go-crypto/signing/ed25519"
 	"github.com/ElrondNetwork/elrond-go-crypto/signing/ed25519/singlesig"
 	"github.com/btcsuite/btcutil/bech32"
-	"log"
 	"net/http"
 )
 
@@ -58,12 +57,14 @@ func HandleLinkWallet(w http.ResponseWriter, r *http.Request)  {
 	signer := &singlesig.Ed25519Signer{}
 	errVerif := signer.Verify(publicKey, []byte(linkWalletRequest.Address + linkWalletRequest.Token + "{}"), []byte(linkWalletRequest.Signature))
 	if errVerif != nil {
-		log.Fatal(errVerif)
+		_ = json.NewEncoder(w).Encode(responses.SuccessResponse{
+			Success: false,
+			Error:   errors.ErrorWalletIncorrectSignature,
+		})
 	}
 
-	json.NewEncoder(w).Encode(responses.SuccessResponse{
+	_ = json.NewEncoder(w).Encode(responses.SuccessResponse{
 		Success: true,
 		Error:   "",
 	})
 }
-
