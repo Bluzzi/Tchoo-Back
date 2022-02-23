@@ -38,6 +38,15 @@ func HandleGetOwnedRequest(w http.ResponseWriter, r *http.Request)  {
 	}
 
 	_, entry := authentication.Exists(authentication.FieldTokens, getOwnedRequest.Token)
+
+	if entry.Wallet == "" {
+		_ = json.NewEncoder(w).Encode(responses.SuccessResponse{
+			Success: false,
+			Error:   errors.ErrorAccountNoWalletLinked,
+		})
+		return
+	}
+
 	_ = json.NewEncoder(w).Encode(responses.GetOwnedResponse{
 		Success:         true,
 		OwnedNftsNonces: nft.GetOwnedPets(entry.Wallet),

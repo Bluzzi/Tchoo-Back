@@ -7,6 +7,7 @@ import (
 	"MetaFriend/routes/pets/interactions"
 	"fmt"
 	"github.com/gorilla/mux"
+	"github.com/rs/cors"
 	"log"
 	"net/http"
 )
@@ -20,6 +21,9 @@ func Load()  {
 	accountRouter.HandleFunc("/login", account.HandleLoginAccount).Methods("POST")
 	accountRouter.HandleFunc("/logout", account.HandleLogoutAccount).Methods("POST")
 	accountRouter.HandleFunc("/link_wallet", account.HandleLinkWallet).Methods("POST")
+	accountRouter.HandleFunc("/is_wallet_linked", account.HandleIsWalletLinked).Methods("POST")
+	accountRouter.HandleFunc("/get_infos", account.HandleGetInfos).Methods("POST")
+	accountRouter.HandleFunc("/is_token_valid", account.HandleIsTokenValid).Methods("POST")
 
 
 	petsRouter := mainRouter.PathPrefix("/pets").Subrouter()
@@ -42,5 +46,5 @@ func Load()  {
 	lotteryRouter.HandleFunc("/buy_ticket", lottery.HandleBuyTicket).Methods("POST")
 
 	fmt.Println("[LOAD] - Router loaded.")
-	log.Fatal(http.ListenAndServe(":8080", r))
+	log.Fatal(http.ListenAndServe(":8080", cors.Default().Handler(r)))
 }

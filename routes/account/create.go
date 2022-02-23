@@ -43,6 +43,7 @@ func HandleCreateAccount(w http.ResponseWriter, r *http.Request)  {
 	hasher := sha1.New()
 	hasher.Write([]byte(createAccountRequest.Password))
 	token := authentication.Create(createAccountRequest.Username, base64.URLEncoding.EncodeToString(hasher.Sum(nil)))
+
 	_ = json.NewEncoder(w).Encode(responses.AccountCreateResponse{
 		Success: true,
 		Token:   token,

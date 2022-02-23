@@ -8,7 +8,7 @@ import (
 )
 
 var (
-	ApiUrl = "https://testnet-api.elrond.com/"
+	ApiUrl = "https://devnet-api.elrond.com/"
 )
 
 type Nft struct {
@@ -21,9 +21,14 @@ func UpdateNonceAddressCache()  {
 
 	var nfts []Nft
 	c := &http.Client{}
-	resp, _ := c.Get(ApiUrl + "nfts?collection=" + config.Config.CollectionToken + "&type=NonFungibleESDT&withOwner=true")
+	resp, e := c.Get(ApiUrl + "nfts?collection=" + config.Config.CollectionToken + "&type=NonFungibleESDT&withOwner=true")
 
-	e := json.NewDecoder(resp.Body).Decode(&nfts)
+	if e != nil {
+		fmt.Println(e)
+		return
+	}
+
+	e = json.NewDecoder(resp.Body).Decode(&nfts)
 	if e != nil {
 		fmt.Println(e)
 		return

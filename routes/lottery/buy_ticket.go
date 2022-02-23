@@ -67,6 +67,7 @@ func HandleBuyTicket(w http.ResponseWriter, r *http.Request)  {
 	prize := lottery.RandomlyGetPrize(accountData.Username)
 
 	_ = json.NewEncoder(w).Encode(responses.LotteryBuyTicketResponse{
+		Success: 	  true,
 		WonPrize:     prize.IsNotAir,
 		Prize:        prize.PrizeStr,
 		PrizePicture: prize.Picture,
