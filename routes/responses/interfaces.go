@@ -12,6 +12,7 @@ type SuccessResponse struct {
 
 type AccountCreateResponse struct {
 	Success bool `json:"success"`
+	IsWalletLinked bool `json:"is_wallet_linked,omitempty"`
 	Token string `json:"token"`
 }
 

@@ -39,8 +39,11 @@ func HandleLoginAccount(w http.ResponseWriter, r *http.Request)  {
 		return
 	}
 
+	_, accountData := authentication.Exists(authentication.FieldUsername, loginAccountRequest.Username)
+
 	_ = json.NewEncoder(w).Encode(responses.AccountCreateResponse{
 		Success: true,
+		IsWalletLinked: accountData.Wallet != "",
 		Token:   authentication.GenerateLoginToken(loginAccountRequest.Username),
 	})
 }

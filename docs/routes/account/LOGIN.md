@@ -15,6 +15,7 @@ The entry-point to retrieve a login token which can expire and can be used to in
 ```json
 {
   "success": true,
+  "is_wallet_linked": true || false,
   "token": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx-expirationtimestamp"
 }
 ```
