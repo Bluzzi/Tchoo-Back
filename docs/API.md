@@ -18,8 +18,9 @@ All of the ``POST`` data is passed through the body as JSON.
     - [GET](./routes/pets/GET.md)
     - [GET_OWNED](./routes/pets/GET_OWNED.md)
     - [GET_TOP](./routes/pets/GET_TOP.md)
-    - ``/api/interactions/``
-        - [CARESS](./routes/pets/interactions/INTERACTION.md)
-        - [FEED](./routes/pets/interactions/INTERACTION.md)
-        - [SLEEP](./routes/pets/interactions/INTERACTION.md)
-        - [WASH](./routes/pets/interactions/INTERACTION.md)
+
+- ``/api/interactions/``
+    - [CARESS](./routes/pets/interactions/INTERACTION.md)
+    - [FEED](./routes/pets/interactions/INTERACTION.md)
+    - [SLEEP](./routes/pets/interactions/INTERACTION.md)
+    - [WASH](./routes/pets/interactions/INTERACTION.md)
