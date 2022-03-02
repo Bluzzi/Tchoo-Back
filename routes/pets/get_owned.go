@@ -11,10 +11,12 @@ import (
 
 type GetOwnedRequest struct {
 	Token string `json:"token"`
+	Wallet string `json:"wallet"`
+	IsWalletSupplied bool `json:"is_wallet_supplied"`
 }
 
 func (gOR GetOwnedRequest) Verify() (bool, string) {
-	if len(gOR.Token) == 0 {
+	if len(gOR.Token) == 0 || len(gOR.Wallet) == 0 {
 		return false, errors.ErrorEmptyField
 	}
 
@@ -37,18 +39,25 @@ func HandleGetOwnedRequest(w http.ResponseWriter, r *http.Request)  {
 		return
 	}
 
-	_, entry := authentication.Exists(authentication.FieldTokens, getOwnedRequest.Token)
-
-	if entry.Wallet == "" {
-		_ = json.NewEncoder(w).Encode(responses.SuccessResponse{
-			Success: false,
-			Error:   errors.ErrorAccountNoWalletLinked,
+	if getOwnedRequest.IsWalletSupplied {
+		_ = json.NewEncoder(w).Encode(responses.GetOwnedResponse{
+			Success:         true,
+			OwnedNftsNonces: nft.GetOwnedPets(getOwnedRequest.Wallet),
 		})
-		return
-	}
+	} else {
+		_, entry := authentication.Exists(authentication.FieldTokens, getOwnedRequest.Token)
 
-	_ = json.NewEncoder(w).Encode(responses.GetOwnedResponse{
-		Success:         true,
-		OwnedNftsNonces: nft.GetOwnedPets(entry.Wallet),
-	})
+		if entry.Wallet == "" {
+			_ = json.NewEncoder(w).Encode(responses.SuccessResponse{
+				Success: false,
+				Error:   errors.ErrorAccountNoWalletLinked,
+			})
+			return
+		}
+
+		_ = json.NewEncoder(w).Encode(responses.GetOwnedResponse{
+			Success:         true,
+			OwnedNftsNonces: nft.GetOwnedPets(entry.Wallet),
+		})
+	}
 }

@@ -16,8 +16,10 @@ func HandleGetTopRequest(w http.ResponseWriter, r *http.Request)  {
 	var getTopRequest GetTopRequest
 	_ = json.NewDecoder(r.Body).Decode(&getTopRequest)
 
+	topNfts, totalCount := nft.GetTopNfts(getTopRequest.StartIndex, getTopRequest.StopIndex)
 	_ = json.NewEncoder(w).Encode(responses.GetTopResponse{
 		Success: true,
-		TopNfts: nft.GetTopNfts(getTopRequest.StartIndex, getTopRequest.StopIndex),
+		TopNfts: topNfts,
+		TotalCount: totalCount,
 	})
 }

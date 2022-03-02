@@ -4,9 +4,11 @@
 Get an account's owned pets from the token
 
 #### Request
-| Name  | Type   | Require | Descritpion                                                 |
-| ----- | ------ | ------- | ----------------------------------------------------------- |
-| token | string | true    | The account's token that we need to retrieve the owned nfts |
+| Name               | Type   | Require | Descritpion                                                  |
+| ------------------ | ------ | ------- | ------------------------------------------------------------ |
+| is_wallet_supplied | bool   | true    | Do we use the wallet or the token to retrieve nfts?          |
+| token              | string | true    | The account's token that we need to retrieve the owned nfts  |
+| wallet             | string | true    | The account's wallet that we need to retrieve the owned nfts |
 
 
 #### Response

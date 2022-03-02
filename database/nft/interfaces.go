@@ -6,12 +6,9 @@ type DatabaseEntry struct {
 
 	// The nft 3d model
 	ThreeDModel string `json:"three_d_model" bson:"three_d_model"`
-
-	// The nft mtl texture
-	MtlModel 	  	  string `json:"mtl_model" bson:"mtl_model"`
-
-	// The nft picture texture
-	TextureModel 	  string `json:"texture_model" bson:"texture_model"`
+	
+	// The nft's animations
+	Animations Animations `json:"animations" bson:"animations"`
 
 	// The nft 2d picture
 	TwoDPicture string `json:"two_d_picture" bson:"two_d_picture"`
@@ -36,6 +33,11 @@ type DatabaseEntry struct {
 
 	// Used to set the timeout and get when the actions can be used again: (actionName -> timestamp)
 	ActionsUsed map[string]int64 `json:"actions_used" bson:"actions_used"`
+}
+
+type Animations struct {
+	Idle string `json:"idle"`
+	Purring string `json:"purring"`
 }
 
 var (

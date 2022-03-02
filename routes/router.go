@@ -14,7 +14,7 @@ import (
 
 func Load()  {
 	r := mux.NewRouter()
-	mainRouter := r.PathPrefix("/api").Subrouter()
+	mainRouter := r.PathPrefix("/v1").Subrouter()
 
 	accountRouter := mainRouter.PathPrefix("/account").Subrouter()
 	accountRouter.HandleFunc("/create", account.HandleCreateAccount).Methods("POST")
@@ -24,6 +24,7 @@ func Load()  {
 	accountRouter.HandleFunc("/is_wallet_linked", account.HandleIsWalletLinked).Methods("POST")
 	accountRouter.HandleFunc("/get_infos", account.HandleGetInfos).Methods("POST")
 	accountRouter.HandleFunc("/is_token_valid", account.HandleIsTokenValid).Methods("POST")
+	accountRouter.HandleFunc("/change_password", account.HandleChangePassword).Methods("POST")
 
 
 	petsRouter := mainRouter.PathPrefix("/pets").Subrouter()
@@ -46,5 +47,5 @@ func Load()  {
 	lotteryRouter.HandleFunc("/buy_ticket", lottery.HandleBuyTicket).Methods("POST")
 
 	fmt.Println("[LOAD] - Router loaded.")
-	log.Fatal(http.ListenAndServe(":8080", cors.Default().Handler(r)))
+	log.Fatal(http.ListenAndServe(":3001", cors.Default().Handler(r)))
 }

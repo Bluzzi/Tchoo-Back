@@ -29,6 +29,7 @@ type GetOwnedResponse struct {
 
 type GetTopResponse struct {
 	Success bool `json:"success"`
+	TotalCount int64 `json:"total_count"`
 	TopNfts []nft.DatabaseEntry `json:"top_nfts"`
 }
 

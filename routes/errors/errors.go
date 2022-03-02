@@ -5,6 +5,7 @@ var (
 	ErrorAccountAlreadyExists = "account.exists"
 	ErrorAccountTokenInvalid = "account.token_invalid"
 	ErrorAccountNoWalletLinked = "account.no_wallet_linked"
+	ErrorPasswordIncorrect = "account.password_incorrect"
 	ErrorInvalidLogin = "account.invalid_login"
 	ErrorWalletUsed = "wallet.used"
 	ErrorWalletIncorrectSignature = "wallet.incorrect_signature"

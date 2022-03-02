@@ -4,12 +4,16 @@ import (
 	"MetaFriend/database/authentication"
 	"MetaFriend/routes/errors"
 	"MetaFriend/routes/responses"
+	"encoding/hex"
 	"encoding/json"
+	"fmt"
 	"github.com/ElrondNetwork/elrond-go-crypto/signing"
 	"github.com/ElrondNetwork/elrond-go-crypto/signing/ed25519"
 	"github.com/ElrondNetwork/elrond-go-crypto/signing/ed25519/singlesig"
-	"github.com/btcsuite/btcutil/bech32"
+	"github.com/ElrondNetwork/elrond-go/core/pubkeyConverter"
+	"golang.org/x/crypto/sha3"
 	"net/http"
+	"strconv"
 )
 
 type LinkWalletRequest struct {
@@ -48,19 +52,63 @@ func HandleLinkWallet(w http.ResponseWriter, r *http.Request)  {
 
 	suite := ed25519.NewEd25519()
 	keyGenerator := signing.NewKeyGenerator(suite)
-	_, bech32Decoded, _ := bech32.Decode(linkWalletRequest.Address)
-	publicKey, err := keyGenerator.PublicKeyFromByteArray(bech32Decoded)
+	converter, err := pubkeyConverter.NewBech32PubkeyConverter(32)
 	if err != nil {
-		return 
+		fmt.Println(err)
+		_ = json.NewEncoder(w).Encode(responses.SuccessResponse{
+			Success: false,
+			Error:   errors.ErrorWalletIncorrectSignature,
+		})
+		return
+	}
+
+	byteArray, err := converter.Decode(linkWalletRequest.Address)
+	if err != nil {
+		fmt.Println(err)
+		_ = json.NewEncoder(w).Encode(responses.SuccessResponse{
+			Success: false,
+			Error:   errors.ErrorWalletIncorrectSignature,
+		})
+		return
+	}
+
+	publicKey, err := keyGenerator.PublicKeyFromByteArray(byteArray)
+	if err != nil {
+		fmt.Println(err)
+		_ = json.NewEncoder(w).Encode(responses.SuccessResponse{
+			Success: false,
+			Error:   errors.ErrorWalletIncorrectSignature,
+		})
+		return
 	}
 
 	signer := &singlesig.Ed25519Signer{}
-	errVerif := signer.Verify(publicKey, []byte(linkWalletRequest.Address + linkWalletRequest.Token + "{}"), []byte(linkWalletRequest.Signature))
+
+
+	message := linkWalletRequest.Address + linkWalletRequest.Token + "{}"
+
+	var unsignedMessage []byte
+	unsignedMessage = append(unsignedMessage, []byte("\x17Elrond Signed Message:\n")...)
+	unsignedMessage = append(unsignedMessage, []byte(strconv.Itoa(len(message)))...)
+	unsignedMessage = append(unsignedMessage, []byte(message)...)
+
+	h := sha3.NewLegacyKeccak256()
+	h.Write(unsignedMessage)
+
+	unsignedMessage = h.Sum(nil)
+
+	sigSrc := []byte(linkWalletRequest.Signature)
+	sigDst := make([]byte, hex.DecodedLen(len(sigSrc)))
+	_, _ = hex.Decode(sigDst, sigSrc)
+
+	errVerif := signer.Verify(publicKey, unsignedMessage, sigDst)
+
 	if errVerif != nil {
 		_ = json.NewEncoder(w).Encode(responses.SuccessResponse{
 			Success: false,
 			Error:   errors.ErrorWalletIncorrectSignature,
 		})
+		return
 	}
 
 	_ = json.NewEncoder(w).Encode(responses.SuccessResponse{

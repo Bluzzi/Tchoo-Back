@@ -14,6 +14,7 @@ Get an account's owned pets from the token
 ```json
 {
   "success": true,
+  "total_count": 1000,
   "top_nfts": [
       {
       "nonce": 0,

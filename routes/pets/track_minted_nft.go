@@ -11,8 +11,6 @@ type TrackMintedNftRequest struct {
 	Token 			  string `json:"token"`
 	Nonce 			  int64 `json:"nonce"`
 	ThreeDModel 	  string `json:"three_d_model"`
-	MtlModel 	  	  string `json:"mtl_model"`
-	TextureModel 	  string `json:"texture_model"`
 	TwoDPicture 	  string `json:"two_d_picture"`
 	Name 			  string `json:"name"`
 	PointsBalance     float64 `json:"points_balance"`
@@ -43,8 +41,6 @@ func HandleTrackMintedNftRequest(w http.ResponseWriter, r *http.Request)  {
 	nft.InsertNftData(nft.DatabaseEntry{
 		Nonce:             trackMintedNftRequest.Nonce,
 		ThreeDModel:       trackMintedNftRequest.ThreeDModel,
-		MtlModel: 		   trackMintedNftRequest.MtlModel,
-		TextureModel:	   trackMintedNftRequest.TextureModel,
 		TwoDPicture:       trackMintedNftRequest.TwoDPicture,
 		Name:              trackMintedNftRequest.Name,
 		PointsBalance:     trackMintedNftRequest.PointsBalance,

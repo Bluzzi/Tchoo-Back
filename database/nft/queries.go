@@ -97,7 +97,7 @@ func GetNftData(nonce int64) DatabaseEntry {
 }
 
 // GetTopNfts gets the top nfts
-func GetTopNfts(min int64, max int64) []DatabaseEntry {
+func GetTopNfts(min int64, max int64) ([]DatabaseEntry, int64) {
 	var entries []DatabaseEntry
 	cursor, _ := database.NftDataCollection.Find(
 		database.Context,
@@ -105,6 +105,8 @@ func GetTopNfts(min int64, max int64) []DatabaseEntry {
 		options.Find().SetSort(bson.M{ FieldPrestigeBalance: 1 }),
 	)
 	_ = cursor.All(database.Context, &entries)
+
+	totalCount := len(entries)
 
 	if max > int64(len(entries)) {
 		max = int64(len(entries))
@@ -124,7 +126,7 @@ func GetTopNfts(min int64, max int64) []DatabaseEntry {
 		returnedEntries = append(returnedEntries, entry)
 	}
 
-	return returnedEntries
+	return returnedEntries, int64(totalCount)
 }
 
 func GetAllNfts() []DatabaseEntry {
