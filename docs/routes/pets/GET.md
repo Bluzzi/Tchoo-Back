@@ -21,6 +21,10 @@ Get a NFT's informations from it's nonce (id)
   "holder_username": "greg",
   "points_balance": 1000,
   "prestige_balance": 10,
+  "animations": {
+    "idle": "https://url",
+    "purring": "https://url"
+  },
   //A constant
   "points_per_five_minutes_base": 10,
   //affected by the state of the pet, will be the passive revenue
