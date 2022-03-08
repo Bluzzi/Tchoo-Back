@@ -4,6 +4,7 @@ var (
 	ErrorEmptyField = "field.empty"
 	ErrorAccountAlreadyExists = "account.exists"
 	ErrorAccountTokenInvalid = "account.token_invalid"
+	ErrorAccountUsernameInvalid = "account.username_invalid"
 	ErrorAccountNoWalletLinked = "account.no_wallet_linked"
 	ErrorPasswordIncorrect = "account.password_incorrect"
 	ErrorInvalidLogin = "account.invalid_login"

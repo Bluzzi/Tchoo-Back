@@ -13,10 +13,11 @@ type TrackMintedNftRequest struct {
 	ThreeDModel 	  string `json:"three_d_model"`
 	TwoDPicture 	  string `json:"two_d_picture"`
 	Name 			  string `json:"name"`
+	Animations 		  nft.Animations `json:"animations"`
 	PointsBalance     float64 `json:"points_balance"`
 	PrestigeBalance   float64 `json:"prestige_balance"`
-	PointsPerHourBase float64 `json:"points_per_hour_base"`
-	PointsPerHourReal float64 `json:"points_per_hour_real"`
+	PointsPerHourBase float64 `json:"points_per_five_minutes_base"`
+	PointsPerHourReal float64 `json:"points_per_five_minutes_real"`
 }
 
 func (tMNR TrackMintedNftRequest) Verify() (bool, string) {
@@ -43,6 +44,7 @@ func HandleTrackMintedNftRequest(w http.ResponseWriter, r *http.Request)  {
 		ThreeDModel:       trackMintedNftRequest.ThreeDModel,
 		TwoDPicture:       trackMintedNftRequest.TwoDPicture,
 		Name:              trackMintedNftRequest.Name,
+		Animations: 	   trackMintedNftRequest.Animations,
 		PointsBalance:     trackMintedNftRequest.PointsBalance,
 		PrestigeBalance:   trackMintedNftRequest.PrestigeBalance,
 		PointsPerHourBase: trackMintedNftRequest.PointsPerHourBase,

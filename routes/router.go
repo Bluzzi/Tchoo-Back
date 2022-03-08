@@ -31,6 +31,7 @@ func Load()  {
 	petsRouter.HandleFunc("/get_owned", pets.HandleGetOwnedRequest).Methods("POST")
 	petsRouter.HandleFunc("/get", pets.HandleGetRequest).Methods("POST")
 	petsRouter.HandleFunc("/get_top", pets.HandleGetTopRequest).Methods("POST")
+	petsRouter.HandleFunc("/get_account_stats", pets.HandleGetAccountStats).Methods("POST")
 	// Note: this endpoint is private and requires a private key, it adds an already minted to track it
 	petsRouter.HandleFunc("/track_minted_nft", pets.HandleTrackMintedNftRequest).Methods("POST")
 	petsRouter.HandleFunc("/get_stats", pets.HandleTrackMintedNftRequest).Methods("POST")

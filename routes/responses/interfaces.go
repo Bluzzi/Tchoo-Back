@@ -33,6 +33,12 @@ type GetTopResponse struct {
 	TopNfts []nft.DatabaseEntry `json:"top_nfts"`
 }
 
+type AccountStatsResponse struct {
+	Username string `json:"username" bson:"username"`
+	Wallet string   `json:"wallet" bson:"wallet"`
+	OwnedNfts []nft.DatabaseEntry `json:"owned_nfts"`
+}
+
 type LotteryBuyTicketResponse struct {
 	Success bool `json:"success"`
 	WonPrize bool `json:"won_prize"`

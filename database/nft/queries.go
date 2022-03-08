@@ -102,7 +102,13 @@ func GetTopNfts(min int64, max int64) ([]DatabaseEntry, int64) {
 	cursor, _ := database.NftDataCollection.Find(
 		database.Context,
 		bson.M{},
-		options.Find().SetSort(bson.M{ FieldPrestigeBalance: 1 }),
+		options.Find().SetSort(bson.M{ FieldPrestigeBalance: -1 }),
+		options.Find().SetProjection(bson.D{
+			{FieldNonce, 1},
+			{FieldPrestigeBalance, 1},
+			{FieldTwoDPicture, 1},
+			{FieldName, 1},
+		}),
 	)
 	_ = cursor.All(database.Context, &entries)
 
