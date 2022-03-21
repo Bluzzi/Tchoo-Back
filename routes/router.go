@@ -16,6 +16,7 @@ func Load()  {
 	r := mux.NewRouter()
 	mainRouter := r.PathPrefix("/v1").Subrouter()
 
+	// Account :
 	accountRouter := mainRouter.PathPrefix("/account").Subrouter()
 	accountRouter.HandleFunc("/create", account.HandleCreateAccount).Methods("POST")
 	accountRouter.HandleFunc("/login", account.HandleLoginAccount).Methods("POST")
@@ -26,23 +27,23 @@ func Load()  {
 	accountRouter.HandleFunc("/is_token_valid", account.HandleIsTokenValid).Methods("POST")
 	accountRouter.HandleFunc("/change_password", account.HandleChangePassword).Methods("POST")
 
-
+	// Pets :
 	petsRouter := mainRouter.PathPrefix("/pets").Subrouter()
 	petsRouter.HandleFunc("/get_owned", pets.HandleGetOwnedRequest).Methods("POST")
 	petsRouter.HandleFunc("/get", pets.HandleGetRequest).Methods("POST")
 	petsRouter.HandleFunc("/get_top", pets.HandleGetTopRequest).Methods("POST")
 	petsRouter.HandleFunc("/get_account_stats", pets.HandleGetAccountStats).Methods("POST")
-	// Note: this endpoint is private and requires a private key, it adds an already minted to track it
-	petsRouter.HandleFunc("/track_minted_nft", pets.HandleTrackMintedNftRequest).Methods("POST")
+	petsRouter.HandleFunc("/track_minted_nft", pets.HandleTrackMintedNftRequest).Methods("POST") // use the private key
 	petsRouter.HandleFunc("/get_stats", pets.HandleTrackMintedNftRequest).Methods("POST")
 
+	// Pets/Interactions :
 	interactionsRouter := petsRouter.PathPrefix("/interactions").Subrouter()
 	interactionsRouter.HandleFunc("/feed", interactions.HandleFeedPet).Methods("POST")
 	interactionsRouter.HandleFunc("/wash", interactions.HandleWashPet).Methods("POST")
 	interactionsRouter.HandleFunc("/pet", interactions.HandleCaressPet).Methods("POST")
 	interactionsRouter.HandleFunc("/sleep", interactions.HandleSleepPet).Methods("POST")
 
-
+	// Lottery :
 	lotteryRouter := mainRouter.PathPrefix("/lottery").Subrouter()
 	lotteryRouter.HandleFunc("/get", lottery.HandleGetRequest).Methods("POST")
 	lotteryRouter.HandleFunc("/buy_ticket", lottery.HandleBuyTicket).Methods("POST")
