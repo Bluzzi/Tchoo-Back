@@ -10,17 +10,16 @@ The entry-point to retrieve a login token which can expire and can be used to in
 | password | string | true    | The login password as text (hash is server sided) |
 
 #### Response
-
-###### Success
-```json
+##### Success
+```js
 {
   "success": true,
-  "is_wallet_linked": true || false,
+  "is_wallet_linked": true, // or false
   "token": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx-expirationtimestamp"
 }
 ```
 
-###### Error
+##### Error
 ```json
 {
   "success": false,
@@ -28,7 +27,7 @@ The entry-point to retrieve a login token which can expire and can be used to in
 }
 ```
 
-##### Error List
+#### Error List
 | Error Id              | Meaning                                     |
 | --------------------- | ------------------------------------------- |
 | account.invalid_login | The supplied login informations are invalid |

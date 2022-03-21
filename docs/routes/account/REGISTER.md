@@ -10,8 +10,7 @@ The entry-point to create an account.
 | password | string | true    | The account password as text (hash is server sided) |
 
 #### Response
-
-###### Success
+##### Success
 ```json
 {
   "success": true,
@@ -19,7 +18,7 @@ The entry-point to create an account.
 }
 ```
 
-###### Error
+##### Error
 ```json
 {
   "success": false,
@@ -27,7 +26,7 @@ The entry-point to create an account.
 }
 ```
 
-##### Error List
+#### Error List
 | Error Id       | Meaning                                      |
 | -------------- | -------------------------------------------- |
 | account.exists | An account with this username already exists |

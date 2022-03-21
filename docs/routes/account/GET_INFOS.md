@@ -1,17 +1,15 @@
 ### [BACK TO API](../../API.md)
 
 **``POST`` /api/account/get_infos**  
-Get an account's information from the token
+Get an account's information from the token.
 
 #### Request
 | Name  | Type   | Require | Descritpion                                                       |
 | ----- | ------ | ------- | ----------------------------------------------------------------- |
 | token | string | true    | The account's token that we need to retrieve the information from |
 
-
 #### Response
-
-###### Success
+##### Success
 ```json
 {
   "username": "Swourire",
@@ -20,7 +18,7 @@ Get an account's information from the token
 }
 ```
 
-###### Error
+##### Error
 ```json
 {
   "success": false,
@@ -28,7 +26,7 @@ Get an account's information from the token
 }
 ```
 
-##### Error List
+#### Error List
 | Error Id              | Meaning                                    |
 | --------------------- | ------------------------------------------ |
 | account.token_invalid | Token is invalid                           |

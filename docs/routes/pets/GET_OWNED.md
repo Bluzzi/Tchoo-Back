@@ -1,7 +1,7 @@
 ### [BACK TO API](../../API.md)
 
 **``POST`` /api/pets/get_owned**  
-Get an account's owned pets from the token
+Get an account's owned pets from the token.
 
 #### Request
 | Name               | Type   | Require | Descritpion                                                  |
@@ -10,10 +10,8 @@ Get an account's owned pets from the token
 | token              | string | true    | The account's token that we need to retrieve the owned nfts  |
 | wallet             | string | true    | The account's wallet that we need to retrieve the owned nfts |
 
-
 #### Response
-
-###### Success
+##### Success
 ```json
 {
   "success": true,
@@ -34,7 +32,7 @@ Get an account's owned pets from the token
 }
 ```
 
-##### Error List
+#### Error List
 | Error Id                 | Meaning                         |
 | ------------------------ | ------------------------------- |
 | account.token_invalid    | Token is invalid                |

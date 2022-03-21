@@ -1,16 +1,16 @@
 ### [BACK TO API](../../API.md)
 
-**``POST`` /api/pets/interactions/pet**  
-Caress the NFT interaction
+**``POST`` /api/pets/interactions/caress**  
+Caress the NFT interaction.
 
 **``POST`` /api/pets/interactions/feed**  
-Feed the NFT interaction
-
-**``POST`` /api/pets/interactions/pet**  
-Caress the NFT interaction
+Feed the NFT interaction.
 
 **``POST`` /api/pets/interactions/sleep**  
-Sleep the NFT interaction
+Sleep the NFT interaction.
+
+**``POST`` /api/pets/interactions/wash**  
+Wash the NFT interaction.
 
 #### Request
 | Name      | Type   | Require | Descritpion         |
@@ -20,16 +20,14 @@ Sleep the NFT interaction
 
 
 #### Response
-
-###### Success
+##### Success
 ```json
 {
-  "success": true,
-  "error": ""
+  "success": true
 }
 ```
 
-###### Error
+##### Error
 ```json
 {
   "success": false,
@@ -37,7 +35,7 @@ Sleep the NFT interaction
 }
 ```
 
-##### Error List
+#### Error List
 | Error Id              | Meaning                          |
 | --------------------- | -------------------------------- |
 | account.token_invalid | Token is invalid                 |

@@ -1,17 +1,15 @@
 ### [BACK TO API](../../API.md)
 
 **``POST`` /api/pets/get**  
-Get a NFT's informations from it's nonce (id)
+Get a NFT's informations from it's nonce (id).
 
 #### Request
 | Name  | Type | Require | Descritpion          |
 | ----- | ---- | ------- | -------------------- |
 | nonce | int  | true    | The nft's nonce (id) |
 
-
 #### Response
-
-###### Success
+##### Success
 ```json
 {
   "nonce": 0,
@@ -25,11 +23,11 @@ Get a NFT's informations from it's nonce (id)
     "idle": "https://url",
     "purring": "https://url"
   },
-  //A constant
+  // A constant
   "points_per_five_minutes_base": 10,
-  //affected by the state of the pet, will be the passive revenue
+  // Affected by the state of the pet, will be the passive revenue
   "points_per_five_minutes_real": 5,
-  // Timestamps until when an action can be used
+  // Timestamps until when an action can be used again :
   "actions_used": {
       "wash": 1000,
       "feed": 1000,

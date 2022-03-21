@@ -9,15 +9,14 @@ The entry-point to retrieve a login token which can expire and can be used to in
 | token | string | true    | The token to invalidate |
 
 #### Response
-
-###### Success
+##### Success
 ```json
 {
   "success": true,
 }
 ```
 
-###### Error
+##### Error
 ```json
 {
   "success": false,
@@ -25,7 +24,7 @@ The entry-point to retrieve a login token which can expire and can be used to in
 }
 ```
 
-##### Error List
+#### Error List
 | Error Id              | Meaning                       |
 | --------------------- | ----------------------------- |
 | account.token_invalid | The supplied token is invalid |

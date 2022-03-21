@@ -1,8 +1,23 @@
 # Documentation API
 
 ## Information
-All of the ``GET`` parameters are passed through the URL.  
-All of the ``POST`` data is passed through the body as JSON.  
+All requests are made with the "POST" method, the data must be sent in JSON as a string.  
+
+All requests responses will have at least its properties :
+### Success
+```json
+{
+  "success": true
+}
+```
+
+### Error
+```json
+{
+  "success": false,
+  "error": "error id" // You can find the exact description of the errors below
+}
+```
 
 ## Routes
 - ``/api/account/``
@@ -20,9 +35,9 @@ All of the ``POST`` data is passed through the body as JSON.
     - [GET_OWNED](./routes/pets/GET_OWNED.md)
     - [GET_TOP](./routes/pets/GET_TOP.md)
     - [GET_ACCOUNT_STATS](./routes/pets/GET_ACCOUNT_STATS.md)
-
-- ``/api/interactions/``
-    - [CARESS](./routes/pets/interactions/INTERACTION.md)
-    - [FEED](./routes/pets/interactions/INTERACTION.md)
-    - [SLEEP](./routes/pets/interactions/INTERACTION.md)
-    - [WASH](./routes/pets/interactions/INTERACTION.md)
+    - [TRACK_MINTED_NFT](./routes/pets/TRACK_MINTED_NFT.md)
+    - ``/interactions/``
+        - [CARESS](./routes/pets/interactions/INTERACTIONS.md)
+        - [FEED](./routes/pets/interactions/INTERACTIONS.md)
+        - [SLEEP](./routes/pets/interactions/INTERACTIONS.md)
+        - [WASH](./routes/pets/interactions/INTERACTIONS.md)

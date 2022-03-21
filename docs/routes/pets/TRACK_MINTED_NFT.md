@@ -1,7 +1,7 @@
 ### [BACK TO API](../../API.md)
 
 **``POST`` /api/pets/track_minted_nft**  
-Track minted nft's private endpoint
+Track minted nft's private endpoint.
 
 #### Request
 | Name                         | Type   | Require | Descritpion                                                                                   |
@@ -19,11 +19,9 @@ Track minted nft's private endpoint
 
 
 #### Response
-
-###### Success
+##### Success
 ```json
 {
-  "success": true,
-  "error": ""
+  "success": true
 }
 ```

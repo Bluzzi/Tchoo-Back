@@ -1,7 +1,7 @@
-### [BACK TO API](../../API.md)
+### [BACK TO API](../../../API.md)
 
 **``POST`` /api/pets/get_top**  
-Get an account's owned pets from the token
+Get an account's owned pets from the token.
 
 #### Request
 | Name        | Type | Require | Descritpion                                           |
@@ -9,8 +9,8 @@ Get an account's owned pets from the token
 | start_index | int  | true    | The start index from which to retrieve the nfts       |
 | stop_index  | int  | true    | The stop index from which to stop retrieving the nfts |
 
-
 #### Response
+##### Success
 ```json
 {
   "success": true,

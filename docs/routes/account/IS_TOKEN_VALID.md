@@ -8,13 +8,18 @@ Is an account's token valid.
 | ----- | ------ | ------- | ---------------------------------------------- |
 | token | string | true    | The token which we should check if it is valid |
 
-
 #### Response
-
-###### Success
+##### Success
 ```json
 {
-  "success": true || false,
-  "error": ""
+  "success": true,
+}
+```
+
+##### Error
+```json
+{
+  "success": false,
+  "error": "error id"
 }
 ```

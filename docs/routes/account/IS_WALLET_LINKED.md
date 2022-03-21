@@ -1,7 +1,7 @@
 ### [BACK TO API](../../API.md)
 
 **``POST`` /api/account/is_wallet_linked**  
-Know, with a token if a wallet is linked to account
+Know, with a token if a wallet is linked to account.
 
 #### Request
 | Name  | Type   | Require | Description                                                              |
@@ -9,16 +9,14 @@ Know, with a token if a wallet is linked to account
 | token | string | true    | The token linked to the account which we should check if it has a wallet |
 
 #### Response
-
-###### Success
+##### Success
 ```json
 {
-  "success": true || false,
-  "error": ""
+  "success": true
 }
 ```
 
-###### Error
+##### Error
 ```json
 {
   "success": false,
@@ -26,7 +24,7 @@ Know, with a token if a wallet is linked to account
 }
 ```
 
-##### Error List
+#### Error List
 | Error Id              | Meaning                         |
 | --------------------- | ------------------------------- |
 | account.token_invalid | The supplied token doesn't work |

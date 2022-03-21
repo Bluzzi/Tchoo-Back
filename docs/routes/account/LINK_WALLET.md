@@ -11,15 +11,14 @@ The entry-point to link an elrond wallet with an account.
 | address   | string | true    | The address to which we need to link the account |
 
 #### Response
-
-###### Success
+##### Success
 ```json
 {
   "success": true,
 }
 ```
 
-###### Error
+##### Error
 ```json
 {
   "success": false,
@@ -27,7 +26,7 @@ The entry-point to link an elrond wallet with an account.
 }
 ```
 
-##### Error List
+#### Error List
 | Error Id              | Meaning                                    |
 | --------------------- | ------------------------------------------ |
 | account.token_invalid | Token is invalid                           |

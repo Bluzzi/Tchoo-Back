@@ -1,7 +1,7 @@
 ### [BACK TO API](../../API.md)
 
 **``POST`` /api/account/change_password**  
-Change the account's password
+Change the account's password.
 
 #### Request
 | Name         | Type   | Require | Descritpion                                    |
@@ -10,18 +10,15 @@ Change the account's password
 | old_password | string | true    | Old password                                   |
 | new_password | string | true    | New password                                   |
 
-
 #### Response
-
-###### Success
+##### Success
 ```json
 {
-  "success": true,
-  "error": ""
+  "success": true
 }
 ```
 
-###### Error
+##### Error
 ```json
 {
   "success": false,
@@ -29,7 +26,7 @@ Change the account's password
 }
 ```
 
-##### Error List
+#### Error List
 | Error Id                   | Meaning                         |
 | -------------------------- | ------------------------------- |
 | account.token_invalid      | The supplied token doesn't work |
