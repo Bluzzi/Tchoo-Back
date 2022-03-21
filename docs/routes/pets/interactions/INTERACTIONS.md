@@ -1,4 +1,4 @@
-### [BACK TO API](../../API.md)
+### [BACK TO API](../../../API.md)
 
 **``POST`` /api/pets/interactions/caress**  
 Caress the NFT interaction.

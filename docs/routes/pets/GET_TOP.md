@@ -1,4 +1,4 @@
-### [BACK TO API](../../../API.md)
+### [BACK TO API](../../API.md)
 
 **``POST`` /api/pets/get_top**  
 Get an account's owned pets from the token.
