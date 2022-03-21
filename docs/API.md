@@ -3,7 +3,13 @@
 ## Information
 All requests are made with the "POST" method, the data must be sent in JSON as a string.  
 
-All requests responses will have at least its properties :
+The parameter "private_token" represents this token which is totally private :  
+  - <details>
+    <summary>Private secret token</summary>
+    00ed35b450dc8a87cd7f22ee838c51e85617d6fe2bfae43c92be5884811b3600  
+  </details>  
+  
+All requests responses will have at least its properties :  
 ### Success
 ```json
 {
