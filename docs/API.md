@@ -29,7 +29,6 @@ All requests responses will have at least its properties :
     - [IS_TOKEN_VALID](./routes/account/IS_TOKEN_VALID.md)
     - [CHANGE_PASSWORD](./routes/account/CHANGE_PASSWORD.md)
     - [GET_INFOS](./routes/account/GET_INFOS.md)
-
 - ``/api/pets/``
     - [GET](./routes/pets/GET.md)
     - [GET_OWNED](./routes/pets/GET_OWNED.md)
