@@ -15,7 +15,7 @@ All requests responses will have at least its properties :
 ```json
 {
   "success": false,
-  "error": "error id" // You can find the exact description of the errors below
+  "error": "error id"
 }
 ```
 
