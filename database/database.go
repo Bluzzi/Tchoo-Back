@@ -12,6 +12,7 @@ var databaseConnection *mongo.Client
 
 var Context context.Context
 var AuthenticationCollection *mongo.Collection
+var InvitesCollection *mongo.Collection
 var NftDataCollection *mongo.Collection
 var PromisesCollection *mongo.Collection
 
@@ -35,6 +36,7 @@ func Load() {
 	AuthenticationCollection = databaseConnection.Database("Tchoo").Collection("Authentication")
 	NftDataCollection = databaseConnection.Database("Tchoo").Collection("NftData")
 	PromisesCollection = databaseConnection.Database("Tchoo").Collection("Promises")
+	InvitesCollection = databaseConnection.Database("Tchoo").Collection("Invites")
 
 	fmt.Println("[LOAD] - Database loaded.")
 }

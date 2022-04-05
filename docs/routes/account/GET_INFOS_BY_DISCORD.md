@@ -1,7 +1,7 @@
 ### [BACK TO API](../../API.md)
 
-**``POST`` /api/account/get_infos**  
-Get an account's information from the token.
+**``POST`` /api/account/get_infos_by_discord**  
+Get an account's information from the discord.
 
 #### Request
 | Name  | Type   | Require | Descritpion                                                       |
@@ -14,7 +14,9 @@ Get an account's information from the token.
 {
   "username": "Swourire",
   "unique_username": "swourire",
-  "wallet": "erd1aiejabiazebfjfkfuzuzenre1é19129ujpma"
+  "wallet": "erd1aiejabiazebfjfkfuzuzenre1é19129ujpma",
+  "is_whitelisted": true,
+  "owned_pets": []
 }
 ```
 
@@ -27,7 +29,7 @@ Get an account's information from the token.
 ```
 
 #### Error List
-| Error Id              | Meaning                                    |
-| --------------------- | ------------------------------------------ |
-| account.token_invalid | Token is invalid                           |
-| field.empty           | One of the fields is empty                 |
+| Error Id             | Meaning                    |
+| -------------------- | -------------------------- |
+| account.not_existing | The account does not exist |
+| field.empty          | One of the fields is empty |

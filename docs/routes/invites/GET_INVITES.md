@@ -1,0 +1,33 @@
+> [DELETE ME] Don't forget to change the link below according to the number of sub-folders
+### [BACK TO API](./API.md)
+
+**``POST`` /api/invites/add_invite**  
+Add an invite to a discord id
+
+#### Request
+| Name       | Type   | Require | Descritpion               |
+| ---------- | ------ | ------- | ------------------------- |
+| discord_id | string | true    | L'id du discord à ajouter |
+
+#### Response
+##### Success
+```json
+{
+  "success": true,
+  "invites": 5
+}
+```
+
+##### Error
+```json
+{
+  "success": false,
+  "error": "error id"
+}
+```
+
+#### Error List
+| Error Id             | Meaning                                   |
+| -------------------- | ----------------------------------------- |
+| field.empty          | One of the fields is empty                |
+| account.not_existing | The discord account did not invite anyone |

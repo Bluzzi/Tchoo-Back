@@ -2,6 +2,7 @@ package routes
 
 import (
 	"MetaFriend/routes/account"
+	"MetaFriend/routes/invites"
 	"MetaFriend/routes/lottery"
 	"MetaFriend/routes/pets"
 	"MetaFriend/routes/pets/interactions"
@@ -23,9 +24,12 @@ func Load()  {
 	accountRouter.HandleFunc("/logout", account.HandleLogoutAccount).Methods("POST")
 	accountRouter.HandleFunc("/link_wallet", account.HandleLinkWallet).Methods("POST")
 	accountRouter.HandleFunc("/is_wallet_linked", account.HandleIsWalletLinked).Methods("POST")
-	accountRouter.HandleFunc("/get_infos", account.HandleGetInfos).Methods("POST")
+	accountRouter.HandleFunc("/get_infos_by_discord", account.HandleGetInfosByDiscord).Methods("POST")
+	accountRouter.HandleFunc("/get_infos_by_token", account.HandleGetInfosByToken).Methods("POST")
+	accountRouter.HandleFunc("/get_infos_by_username", account.HandleGetInfosByUsername).Methods("POST")
 	accountRouter.HandleFunc("/is_token_valid", account.HandleIsTokenValid).Methods("POST")
 	accountRouter.HandleFunc("/change_password", account.HandleChangePassword).Methods("POST")
+	accountRouter.HandleFunc("/set_whitelisted", account.HandleSetWhitelisted).Methods("POST")
 
 	// Pets :
 	petsRouter := mainRouter.PathPrefix("/pets").Subrouter()
@@ -48,6 +52,10 @@ func Load()  {
 	lotteryRouter.HandleFunc("/get", lottery.HandleGetRequest).Methods("POST")
 	lotteryRouter.HandleFunc("/buy_ticket", lottery.HandleBuyTicket).Methods("POST")
 
+	// Invites :
+	invitesRouter := mainRouter.PathPrefix("/invites").Subrouter()
+	invitesRouter.HandleFunc("/add_invite", invites.HandleAddInvite).Methods("POST")
+	invitesRouter.HandleFunc("/get_invites", invites.GetInvites).Methods("POST")
 	fmt.Println("[LOAD] - Router loaded.")
 	log.Fatal(http.ListenAndServe(":3001", cors.Default().Handler(r)))
 }

@@ -45,6 +45,7 @@ func HandleGetAccountStats(w http.ResponseWriter, r *http.Request)  {
 			Username: accountData.Username,
 			Wallet: accountData.Wallet,
 			OwnedNfts: []nft.DatabaseEntry{},
+			Success: true,
 		})
 	} else {
 		ownedNftsNonces := nft.GetOwnedPets(accountData.Wallet)
@@ -57,6 +58,7 @@ func HandleGetAccountStats(w http.ResponseWriter, r *http.Request)  {
 			Username: accountData.Username,
 			Wallet: accountData.Wallet,
 			OwnedNfts: ownedNfts,
+			Success: true,
 		})
 	}
 

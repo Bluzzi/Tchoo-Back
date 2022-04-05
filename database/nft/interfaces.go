@@ -4,6 +4,7 @@ type DatabaseEntry struct {
 	// The unique nft nonce
 	Nonce int64 `json:"nonce,omitempty" bson:"nonce"`
 
+	Success bool `json:"success,omitempty" bson:"success,omitempty"`
 	// The nft 3d model
 	ThreeDModel string `json:"three_d_model,omitempty" bson:"three_d_model"`
 	

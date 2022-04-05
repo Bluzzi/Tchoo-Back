@@ -20,6 +20,9 @@ type AccountInfosResponse struct {
 	Username string `json:"username" bson:"username"`
 	UniqueUsername string `json:"unique_username" bson:"unique_username"`
 	Wallet string   `json:"wallet" bson:"wallet"`
+	IsWhitelisted bool   `json:"is_whitelisted" bson:"is_whitelisted"`
+	OwnedPets []int64   `json:"owned_pets" bson:"owned_pets"`
+	DiscordId string   `json:"discord_id,omitempty" bson:"discord_id"`
 }
 
 type GetOwnedResponse struct {
@@ -34,6 +37,7 @@ type GetTopResponse struct {
 }
 
 type AccountStatsResponse struct {
+	Success bool `json:"success"`
 	Username string `json:"username" bson:"username"`
 	Wallet string   `json:"wallet" bson:"wallet"`
 	OwnedNfts []nft.DatabaseEntry `json:"owned_nfts"`
@@ -47,6 +51,12 @@ type LotteryBuyTicketResponse struct {
 }
 
 type GetLotteryResponse struct {
+	Success bool `json:"success"`
 	Prizes []lottery.Prize `json:"prizes"`
 	PriceATicket float64 `json:"price_a_ticket"`
+}
+
+type GetInvitesResponse struct {
+	Success bool `json:"success"`
+	Invites int64 `json:"invites"`
 }

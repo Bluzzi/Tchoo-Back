@@ -2,6 +2,7 @@ package account
 
 import (
 	"MetaFriend/database/authentication"
+	"MetaFriend/routes/errors"
 	"MetaFriend/routes/responses"
 	"encoding/json"
 	"net/http"
@@ -15,8 +16,17 @@ func HandleIsTokenValid(w http.ResponseWriter, r *http.Request)  {
 	var isTokenValidRequest IsTokenValidRequest
 	_ = json.NewDecoder(r.Body).Decode(&isTokenValidRequest)
 
-	_ = json.NewEncoder(w).Encode(responses.SuccessResponse{
-		Success: authentication.VerifyToken(isTokenValidRequest.Token),
-		Error:   "",
-	})
+	success := authentication.VerifyToken(isTokenValidRequest.Token)
+	if success {
+		_ = json.NewEncoder(w).Encode(responses.SuccessResponse{
+			Success: true,
+			Error:   "",
+		})
+	} else {
+		_ = json.NewEncoder(w).Encode(responses.SuccessResponse{
+			Success: false,
+			Error:   errors.ErrorAccountTokenInvalid,
+		})
+	}
+
 }

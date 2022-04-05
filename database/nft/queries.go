@@ -109,15 +109,17 @@ func GetTopNfts(min int64, max int64) ([]DatabaseEntry, int64) {
 			{FieldTwoDPicture, 1},
 			{FieldName, 1},
 		}),
+		options.Find().SetSkip(min),
+		options.Find().SetLimit(max),
 	)
+
 	_ = cursor.All(database.Context, &entries)
 
 	totalCount := len(entries)
 
-	if max > int64(len(entries)) {
-		max = int64(len(entries))
+	if totalCount == 0 {
+		return []DatabaseEntry{}, 0
 	}
-	entries = entries[min:max]
 
 	var returnedEntries []DatabaseEntry
 
